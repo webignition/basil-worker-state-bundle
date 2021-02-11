@@ -12,7 +12,9 @@
         }
     ],
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "doctrine/doctrine-bundle": "^2.2",
+        "webignition/basil-worker-persistence-bundle": "^0.7.0"
     },
     "autoload": {
         "psr-4": {

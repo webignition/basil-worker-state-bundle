@@ -4,5 +4,5 @@ services:
     autoconfigure: true
     public: true
 
-  webignition\BasilWorker\PersistenceBundle\Services\:
+  webignition\BasilWorker\StateBundle\Services\:
     resource: '../../Services/'

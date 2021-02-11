@@ -6,3 +6,9 @@ services:
     autowire: true
     autoconfigure: true
     public: true
+
+  webignition\BasilWorker\PersistenceBundle\Tests\Services\DatabaseSchemaCreator:
+    arguments:
+      $entityManager: '@Doctrine\ORM\EntityManagerInterface'
+      $entityClasses:
+        - 'webignition\BasilWorker\PersistenceBundle\Entity\Callback\CallbackEntity'
