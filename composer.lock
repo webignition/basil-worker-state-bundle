@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee642f9bd2e568f3dd857cd2816c27dd",
+    "content-hash": "6b10bcde17e2485756bd83255377f134",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -3750,6 +3750,54 @@
                 "source": "https://github.com/webignition/basil-worker-persistence-bundle/tree/0.7"
             },
             "time": "2020-12-09T18:52:37+00:00"
+        },
+        {
+            "name": "webignition/string-prefix-remover",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webignition/string-prefix-remover.git",
+                "reference": "cc2f33431233680a7ebe2cce9a0ac51c25512e5c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webignition/string-prefix-remover/zipball/cc2f33431233680a7ebe2cce9a0ac51c25512e5c",
+                "reference": "cc2f33431233680a7ebe2cce9a0ac51c25512e5c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4.0"
+            },
+            "require-dev": {
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^0.12.53",
+                "phpstan/phpstan-phpunit": "^0.12.16",
+                "phpunit/phpunit": "^9.4",
+                "squizlabs/php_codesniffer": "^3.5",
+                "symplify/easy-coding-standard": "^8.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "webignition\\StringPrefixRemover\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Cram",
+                    "email": "webignition@gmail.com"
+                }
+            ],
+            "homepage": "https://github.com/webignition/string-prefix-remover",
+            "support": {
+                "issues": "https://github.com/webignition/string-prefix-remover/issues",
+                "source": "https://github.com/webignition/string-prefix-remover/tree/0.1"
+            },
+            "time": "2021-02-11T11:42:50+00:00"
         }
     ],
     "packages-dev": [
