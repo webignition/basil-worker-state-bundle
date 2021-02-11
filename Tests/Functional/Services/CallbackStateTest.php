@@ -8,19 +8,19 @@ use webignition\BasilWorker\PersistenceBundle\Entity\Callback\CallbackEntity;
 use webignition\BasilWorker\PersistenceBundle\Entity\Callback\CallbackInterface;
 use webignition\BasilWorker\StateBundle\Services\CallbackState;
 use webignition\BasilWorker\StateBundle\Tests\Functional\AbstractFunctionalTest;
+use webignition\SymfonyTestServiceInjectorTrait\TestClassServicePropertyInjectorTrait;
 
 class CallbackStateTest extends AbstractFunctionalTest
 {
+    use TestClassServicePropertyInjectorTrait;
+
     private CallbackState $callbackState;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $callbackState = $this->container->get(CallbackState::class);
-        if ($callbackState instanceof CallbackState) {
-            $this->callbackState = $callbackState;
-        }
+        $this->injectContainerServicesIntoClassProperties();
     }
 
     /**

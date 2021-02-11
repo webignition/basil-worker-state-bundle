@@ -1,6 +1,9 @@
 imports:
   - { resource: services_test_doctrine.yaml }
 
+parameters:
+  compiler_source_directory: '/app/source'
+
 services:
   _defaults:
     autowire: true
@@ -12,3 +15,16 @@ services:
       $entityManager: '@Doctrine\ORM\EntityManagerInterface'
       $entityClasses:
         - 'webignition\BasilWorker\PersistenceBundle\Entity\Callback\CallbackEntity'
+        - 'webignition\BasilWorker\PersistenceBundle\Entity\Job'
+        - 'webignition\BasilWorker\PersistenceBundle\Entity\Source'
+        - 'webignition\BasilWorker\PersistenceBundle\Entity\Test'
+        - 'webignition\BasilWorker\PersistenceBundle\Entity\TestConfiguration'
+
+  webignition.basil-worker.state-bundle.path-prefix-remover.compiler-source:
+    class: webignition\StringPrefixRemover\DefinedStringPrefixRemover
+    arguments:
+      $prefix: '%compiler_source_directory%/'
+
+  webignition\BasilWorker\StateBundle\Services\SourcePathFinder:
+    calls:
+      - setCompilerSourcePathPrefixRemover: ['@webignition.basil-worker.state-bundle.path-prefix-remover.compiler-source']
