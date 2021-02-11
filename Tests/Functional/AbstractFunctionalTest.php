@@ -11,17 +11,17 @@ use webignition\BasilWorker\PersistenceBundle\Tests\Services\DatabaseSchemaCreat
 
 abstract class AbstractFunctionalTest extends TestCase
 {
-    protected ContainerInterface $container;
+    protected static ContainerInterface $container;
     protected EntityManagerInterface $entityManager;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->container = $this->createContainer();
+        self::$container = $this->createContainer();
         $this->createDatabaseSchema();
 
-        $entityManager = $this->container->get(EntityManagerInterface::class);
+        $entityManager = self::$container->get(EntityManagerInterface::class);
         if ($entityManager instanceof EntityManagerInterface) {
             $this->entityManager = $entityManager;
         }
@@ -37,7 +37,7 @@ abstract class AbstractFunctionalTest extends TestCase
 
     private function createDatabaseSchema(): void
     {
-        $databaseSchemaCreator = $this->container->get(DatabaseSchemaCreator::class);
+        $databaseSchemaCreator = self::$container->get(DatabaseSchemaCreator::class);
         if ($databaseSchemaCreator instanceof DatabaseSchemaCreator) {
             $databaseSchemaCreator->create();
         }

@@ -14,7 +14,8 @@
     "require": {
         "php": ">=7.4",
         "doctrine/doctrine-bundle": "^2.2",
-        "webignition/basil-worker-persistence-bundle": "^0.7.0"
+        "webignition/basil-worker-persistence-bundle": "^0.7.0",
+        "webignition/string-prefix-remover": ">=0.1,<1"
     },
     "autoload": {
         "psr-4": {
@@ -39,7 +40,8 @@
         "phpstan/phpstan-symfony": "^0.12.11",
         "phpunit/phpunit": "^9.4",
         "squizlabs/php_codesniffer": "^3.5",
-        "symplify/easy-coding-standard": "^8.3"
+        "symplify/easy-coding-standard": "^8.3",
+        "webignition/symfony-test-service-injector-trait": "^0.1.0"
     },
     "scripts": {
         "cs-ecs": "./vendor/bin/ecs check --ansi --no-progress-bar --config ecs.php",
