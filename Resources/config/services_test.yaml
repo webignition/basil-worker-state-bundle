@@ -1,0 +1,8 @@
+imports:
+  - { resource: services_test_doctrine.yaml }
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
