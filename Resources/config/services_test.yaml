@@ -20,6 +20,8 @@ services:
         - 'webignition\BasilWorker\PersistenceBundle\Entity\Test'
         - 'webignition\BasilWorker\PersistenceBundle\Entity\TestConfiguration'
 
+  webignition\BasilWorker\StateBundle\Tests\Services\EntityCreator:
+
   webignition.basil-worker.state-bundle.path-prefix-remover.compiler-source:
     class: webignition\StringPrefixRemover\DefinedStringPrefixRemover
     arguments:

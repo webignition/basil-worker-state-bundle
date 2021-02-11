@@ -8,11 +8,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use webignition\BasilWorker\PersistenceBundle\Tests\Services\DatabaseSchemaCreator;
+use webignition\BasilWorker\StateBundle\Tests\Services\EntityCreator;
 
 abstract class AbstractFunctionalTest extends TestCase
 {
     protected static ContainerInterface $container;
     protected EntityManagerInterface $entityManager;
+    protected EntityCreator $entityCreator;
 
     protected function setUp(): void
     {
@@ -24,6 +26,11 @@ abstract class AbstractFunctionalTest extends TestCase
         $entityManager = self::$container->get(EntityManagerInterface::class);
         if ($entityManager instanceof EntityManagerInterface) {
             $this->entityManager = $entityManager;
+        }
+
+        $entityCreator = self::$container->get(EntityCreator::class);
+        if ($entityCreator instanceof EntityCreator) {
+            $this->entityCreator = $entityCreator;
         }
     }
 
