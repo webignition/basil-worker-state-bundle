@@ -1,0 +1,7 @@
+parameters:
+  level: 8
+  paths:
+    - DependencyInjection
+    - Services
+    - Tests
+  inferPrivatePropertyTypeFromConstructor: true
