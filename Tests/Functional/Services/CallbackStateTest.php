@@ -23,12 +23,6 @@ class CallbackStateTest extends AbstractFunctionalTest
         }
     }
 
-    public function testFoo(): void
-    {
-        self::assertTrue(true);
-    }
-
-
     /**
      * @dataProvider isDataProvider
      *
