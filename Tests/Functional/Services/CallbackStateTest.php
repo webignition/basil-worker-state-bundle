@@ -132,11 +132,7 @@ class CallbackStateTest extends AbstractFunctionalTest
      */
     private function createCallbackEntity(string $state): CallbackEntity
     {
-        $entity = CallbackEntity::create(
-            CallbackInterface::TYPE_EXECUTE_DOCUMENT_RECEIVED,
-            []
-        );
-
+        $entity = CallbackEntity::create(CallbackInterface::TYPE_EXECUTE_DOCUMENT_RECEIVED, []);
         $entity->setState($state);
 
         $this->entityManager->persist($entity);
