@@ -68,7 +68,14 @@ class EntityCreator
 
         $callbackConfigurations = $entityConfiguration->getCallbackConfigurations();
         foreach ($callbackConfigurations as $callbackConfiguration) {
-            $this->callbackFactory->create($callbackConfiguration->getType(), $callbackConfiguration->getPayload());
+            $callback = $this->callbackFactory->create(
+                $callbackConfiguration->getType(),
+                $callbackConfiguration->getPayload()
+            );
+            $callback->setState($callbackConfiguration->getState());
+
+            $this->entityManager->persist($callback);
+            $this->entityManager->flush();
         }
     }
 }

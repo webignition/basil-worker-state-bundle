@@ -8,37 +8,29 @@ use webignition\BasilWorker\PersistenceBundle\Entity\Callback\CallbackInterface;
 
 class CallbackConfiguration
 {
+    private const DEFAULT_TYPE = CallbackInterface::TYPE_EXECUTE_DOCUMENT_RECEIVED;
+    private const DEFAULT_PAYLOAD = [];
+    private const DEFAULT_STATE = CallbackInterface::STATE_AWAITING;
+
     /**
      * @var CallbackInterface::TYPE_*
      */
-    private string $type;
+    private string $type = self::DEFAULT_TYPE;
 
     /**
      * @var array<mixed>
      */
-    private array $payload;
+    private array $payload = self::DEFAULT_PAYLOAD;
 
     /**
-     *
-     * @param array<mixed> $payload
+     * @var CallbackInterface::STATE_*
      */
+    private string $state = self::DEFAULT_STATE;
 
-    /**
-     * @param CallbackInterface::TYPE_* $type
-     * @param array<mixed> $payload
-     */
-    public function __construct(string $type, array $payload)
-    {
-        $this->type = $type;
-        $this->payload = $payload;
-    }
 
     public static function create(): CallbackConfiguration
     {
-        return new CallbackConfiguration(
-            CallbackInterface::TYPE_EXECUTE_DOCUMENT_RECEIVED,
-            []
-        );
+        return new CallbackConfiguration();
     }
 
     /**
@@ -64,6 +56,17 @@ class CallbackConfiguration
     }
 
     /**
+     * @param CallbackInterface::STATE_* $state
+     */
+    public function withState(string $state): CallbackConfiguration
+    {
+        $new = clone $this;
+        $new->state = $state;
+
+        return $new;
+    }
+
+    /**
      * @return CallbackInterface::TYPE_*
      */
     public function getType(): string
@@ -77,5 +80,13 @@ class CallbackConfiguration
     public function getPayload(): array
     {
         return $this->payload;
+    }
+
+    /**
+     * @return CallbackInterface::STATE_*
+     */
+    public function getState(): string
+    {
+        return $this->state;
     }
 }
