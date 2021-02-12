@@ -279,29 +279,29 @@ class ApplicationStateTest extends AbstractFunctionalTest
     }
 
     /**
-     * @dataProvider getCurrentStateDataProvider
+     * @dataProvider getDataProvider
      */
-    public function testGetCurrentState(EntityConfiguration $entityConfiguration, string $expectedCurrentState): void
+    public function testGet(EntityConfiguration $entityConfiguration, string $expectedState): void
     {
         $this->entityCreator->create($entityConfiguration);
 
-        self::assertSame($expectedCurrentState, $this->applicationState->getCurrentState());
+        self::assertSame($expectedState, $this->applicationState->get());
     }
 
     /**
      * @return array<mixed>
      */
-    public function getCurrentStateDataProvider(): array
+    public function getDataProvider(): array
     {
         return [
             'no job, is awaiting' => [
                 'entityConfiguration' => new EntityConfiguration(),
-                'expectedCurrentState' => ApplicationState::STATE_AWAITING_JOB,
+                'expectedState' => ApplicationState::STATE_AWAITING_JOB,
             ],
             'has job, no sources' => [
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create()),
-                'expectedCurrentState' => ApplicationState::STATE_AWAITING_SOURCES,
+                'expectedState' => ApplicationState::STATE_AWAITING_SOURCES,
             ],
             'no sources compiled' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -310,7 +310,7 @@ class ApplicationStateTest extends AbstractFunctionalTest
                         SourceConfiguration::create()->withPath('Test/test1.yml'),
                         SourceConfiguration::create()->withPath('Test/test2.yml'),
                     ]),
-                'expectedCurrentState' => ApplicationState::STATE_COMPILING,
+                'expectedState' => ApplicationState::STATE_COMPILING,
             ],
             'first source compiled' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -322,7 +322,7 @@ class ApplicationStateTest extends AbstractFunctionalTest
                     ->withTestConfigurations([
                         TestConfiguration::create()->withSource('/app/source/Test/test1.yml'),
                     ]),
-                'expectedCurrentState' => ApplicationState::STATE_COMPILING,
+                'expectedState' => ApplicationState::STATE_COMPILING,
             ],
             'all sources compiled, no tests running' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -335,7 +335,7 @@ class ApplicationStateTest extends AbstractFunctionalTest
                         TestConfiguration::create()->withSource('/app/source/Test/test1.yml'),
                         TestConfiguration::create()->withSource('/app/source/Test/test2.yml'),
                     ]),
-                'expectedCurrentState' => ApplicationState::STATE_EXECUTING,
+                'expectedState' => ApplicationState::STATE_EXECUTING,
             ],
             'first test complete, no callbacks' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -350,7 +350,7 @@ class ApplicationStateTest extends AbstractFunctionalTest
                             ->withState(Test::STATE_COMPLETE),
                         TestConfiguration::create()->withSource('/app/source/Test/test2.yml'),
                     ]),
-                'expectedCurrentState' => ApplicationState::STATE_EXECUTING,
+                'expectedState' => ApplicationState::STATE_EXECUTING,
             ],
             'first test complete, callback for first test complete' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -367,7 +367,7 @@ class ApplicationStateTest extends AbstractFunctionalTest
                     ])->withCallbackConfigurations([
                         CallbackConfiguration::create()->withState(CallbackInterface::STATE_COMPLETE),
                     ]),
-                'expectedCurrentState' => ApplicationState::STATE_EXECUTING,
+                'expectedState' => ApplicationState::STATE_EXECUTING,
             ],
             'all tests complete, first callback complete, second callback running' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -387,7 +387,7 @@ class ApplicationStateTest extends AbstractFunctionalTest
                         CallbackConfiguration::create()->withState(CallbackInterface::STATE_COMPLETE),
                         CallbackConfiguration::create()->withState(CallbackInterface::STATE_SENDING),
                     ]),
-                'expectedCurrentState' => ApplicationState::STATE_COMPLETING_CALLBACKS,
+                'expectedState' => ApplicationState::STATE_COMPLETING_CALLBACKS,
             ],
             'all tests complete, all callbacks complete' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -407,7 +407,7 @@ class ApplicationStateTest extends AbstractFunctionalTest
                         CallbackConfiguration::create()->withState(CallbackInterface::STATE_COMPLETE),
                         CallbackConfiguration::create()->withState(CallbackInterface::STATE_COMPLETE),
                     ]),
-                'expectedCurrentState' => ApplicationState::STATE_COMPLETE,
+                'expectedState' => ApplicationState::STATE_COMPLETE,
             ],
             'has a job-timeout callback' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -417,7 +417,7 @@ class ApplicationStateTest extends AbstractFunctionalTest
                             ->withType(CallbackInterface::TYPE_JOB_TIMEOUT)
                             ->withState(CallbackInterface::STATE_COMPLETE),
                     ]),
-                'expectedCurrentState' => ApplicationState::STATE_TIMED_OUT,
+                'expectedState' => ApplicationState::STATE_TIMED_OUT,
             ],
         ];
     }

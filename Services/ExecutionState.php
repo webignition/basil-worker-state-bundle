@@ -37,13 +37,13 @@ class ExecutionState
             return is_string($item);
         });
 
-        return in_array($this->getCurrentState(), $states);
+        return in_array($this->get(), $states);
     }
 
     /**
      * @return ExecutionState::STATE_*
      */
-    public function getCurrentState(): string
+    public function get(): string
     {
         $hasFailedTests = 0 !== $this->testRepository->count(['state' => Test::STATE_FAILED]);
         $hasCancelledTests = 0 !== $this->testRepository->count(['state' => Test::STATE_CANCELLED]);
