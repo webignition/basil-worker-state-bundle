@@ -29,20 +29,6 @@ class CompilationState
     }
 
     /**
-     * @param CompilationState::STATE_* ...$states
-     *
-     * @return bool
-     */
-    public function is(...$states): bool
-    {
-        $states = array_filter($states, function ($item) {
-            return is_string($item);
-        });
-
-        return in_array($this->get(), $states);
-    }
-
-    /**
      * @return CompilationState::STATE_*
      */
     public function get(): string
