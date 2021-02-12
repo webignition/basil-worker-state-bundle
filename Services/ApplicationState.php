@@ -62,7 +62,7 @@ class ApplicationState
             return self::STATE_COMPILING;
         }
 
-        if (false === $this->executionState->is(...ExecutionState::FINISHED_STATES)) {
+        if (false === in_array($this->executionState->get(), ExecutionState::FINISHED_STATES)) {
             return self::STATE_EXECUTING;
         }
 
