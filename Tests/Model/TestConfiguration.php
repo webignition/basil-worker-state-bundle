@@ -4,35 +4,31 @@ declare(strict_types=1);
 
 namespace webignition\BasilWorker\StateBundle\Tests\Model;
 
+use webignition\BasilWorker\PersistenceBundle\Entity\Test;
 use webignition\BasilWorker\PersistenceBundle\Entity\TestConfiguration as TestConfigurationEntity;
 
 class TestConfiguration
 {
-    private TestConfigurationEntity $testConfigurationEntity;
-    private string $source;
-    private string $target;
-    private int $stepCount;
+    private const DEFAULT_SOURCE = '/app/source/test.yml';
+    private const DEFAULT_TARGET = '/app/target/GeneratedTest.php';
+    private const DEFAULT_STEP_COUNT = 1;
 
-    public function __construct(
-        TestConfigurationEntity $testConfigurationEntity,
-        string $source,
-        string $target,
-        int $stepCount
-    ) {
-        $this->testConfigurationEntity = $testConfigurationEntity;
-        $this->source = $source;
-        $this->target = $target;
-        $this->stepCount = $stepCount;
-    }
+    private TestConfigurationEntity $testConfigurationEntity;
+    private string $source = self::DEFAULT_SOURCE;
+    private string $target = self::DEFAULT_TARGET;
+    private int $stepCount = self::DEFAULT_STEP_COUNT;
+
+    /**
+     * @var Test::STATE_*
+     */
+    private string $state = Test::STATE_AWAITING;
 
     public static function create(): TestConfiguration
     {
-        return new TestConfiguration(
-            TestConfigurationEntity::create('chrome', 'http://example.com'),
-            '/app/source/test.yml',
-            '/app/target/GeneratedTest.php',
-            1
-        );
+        $testConfiguration = new TestConfiguration();
+        $testConfiguration->testConfigurationEntity = TestConfigurationEntity::create('chrome', 'http://example.com');
+
+        return $testConfiguration;
     }
 
     public function getTestConfigurationEntity(): TestConfigurationEntity
@@ -55,10 +51,29 @@ class TestConfiguration
         return $this->stepCount;
     }
 
+    /**
+     * @return Test::STATE_*
+     */
+    public function getState(): string
+    {
+        return $this->state;
+    }
+
     public function withSource(string $source): TestConfiguration
     {
         $new = clone $this;
         $new->source = $source;
+
+        return $new;
+    }
+
+    /**
+     * @param Test::STATE_* $state
+     */
+    public function withState(string $state): TestConfiguration
+    {
+        $new = clone $this;
+        $new->state = $state;
 
         return $new;
     }
