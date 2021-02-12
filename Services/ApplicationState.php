@@ -66,9 +66,7 @@ class ApplicationState
             return self::STATE_EXECUTING;
         }
 
-        if (
-            $this->callbackState->is(CallbackState::STATE_AWAITING, CallbackState::STATE_RUNNING)
-        ) {
+        if (in_array($this->callbackState->get(), [CallbackState::STATE_AWAITING, CallbackState::STATE_RUNNING])) {
             return self::STATE_COMPLETING_CALLBACKS;
         }
 
