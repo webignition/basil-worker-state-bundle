@@ -161,38 +161,38 @@ class ExecutionStateTest extends AbstractFunctionalTest
     }
 
     /**
-     * @dataProvider getCurrentStateDataProvider
+     * @dataProvider getDataProvider
      */
-    public function testGetCurrentState(EntityConfiguration $entityConfiguration, string $expectedCurrentState): void
+    public function testGet(EntityConfiguration $entityConfiguration, string $expectedState): void
     {
         $this->entityCreator->create($entityConfiguration);
 
-        self::assertSame($expectedCurrentState, $this->executionState->getCurrentState());
+        self::assertSame($expectedState, $this->executionState->get());
     }
 
     /**
      * @return array<mixed>
      */
-    public function getCurrentStateDataProvider(): array
+    public function getDataProvider(): array
     {
         return [
             'awaiting: not has finished tests and not has running tests and not has awaiting tests' => [
                 'entityConfiguration' => new EntityConfiguration(),
-                'expectedCurrentState' => ExecutionState::STATE_AWAITING,
+                'expectedState' => ExecutionState::STATE_AWAITING,
             ],
             'running: not has finished tests and has running tests and not has awaiting tests' => [
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withTestConfigurations([
                         TestConfiguration::create()->withState(Test::STATE_RUNNING),
                     ]),
-                'expectedCurrentState' => ExecutionState::STATE_RUNNING,
+                'expectedState' => ExecutionState::STATE_RUNNING,
             ],
             'awaiting: not has finished tests and not has running tests and has awaiting tests' => [
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withTestConfigurations([
                         TestConfiguration::create()->withState(Test::STATE_AWAITING),
                     ]),
-                'expectedCurrentState' => ExecutionState::STATE_AWAITING,
+                'expectedState' => ExecutionState::STATE_AWAITING,
             ],
             'running: has complete tests and has running tests and not has awaiting tests' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -200,7 +200,7 @@ class ExecutionStateTest extends AbstractFunctionalTest
                         TestConfiguration::create()->withState(Test::STATE_COMPLETE),
                         TestConfiguration::create()->withState(Test::STATE_RUNNING),
                     ]),
-                'expectedCurrentState' => ExecutionState::STATE_RUNNING,
+                'expectedState' => ExecutionState::STATE_RUNNING,
             ],
             'running: has complete tests and not has running tests and has awaiting tests' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -208,21 +208,21 @@ class ExecutionStateTest extends AbstractFunctionalTest
                         TestConfiguration::create()->withState(Test::STATE_COMPLETE),
                         TestConfiguration::create()->withState(Test::STATE_AWAITING),
                     ]),
-                'expectedCurrentState' => ExecutionState::STATE_RUNNING,
+                'expectedState' => ExecutionState::STATE_RUNNING,
             ],
             'complete: has finished tests and not has running tests and not has awaiting tests' => [
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withTestConfigurations([
                         TestConfiguration::create()->withState(Test::STATE_COMPLETE),
                     ]),
-                'expectedCurrentState' => ExecutionState::STATE_COMPLETE,
+                'expectedState' => ExecutionState::STATE_COMPLETE,
             ],
             'cancelled: has failed tests' => [
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withTestConfigurations([
                         TestConfiguration::create()->withState(Test::STATE_FAILED),
                     ]),
-                'expectedCurrentState' => ExecutionState::STATE_CANCELLED,
+                'expectedState' => ExecutionState::STATE_CANCELLED,
                 'expectedIsNotStates' => [
                     ExecutionState::STATE_AWAITING,
                     ExecutionState::STATE_RUNNING,
@@ -234,7 +234,7 @@ class ExecutionStateTest extends AbstractFunctionalTest
                     ->withTestConfigurations([
                         TestConfiguration::create()->withState(Test::STATE_CANCELLED),
                     ]),
-                'expectedCurrentState' => ExecutionState::STATE_CANCELLED,
+                'expectedState' => ExecutionState::STATE_CANCELLED,
             ],
         ];
     }

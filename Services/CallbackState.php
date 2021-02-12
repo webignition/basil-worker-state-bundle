@@ -33,13 +33,13 @@ class CallbackState
             return is_string($item);
         });
 
-        return in_array($this->getCurrentState(), $states);
+        return in_array($this->get(), $states);
     }
 
     /**
      * @return CallbackState::STATE_*
      */
-    private function getCurrentState(): string
+    private function get(): string
     {
         $callbackCount = $this->repository->count([]);
         $finishedCallbackCount = $this->callbackStore->getFinishedCount();

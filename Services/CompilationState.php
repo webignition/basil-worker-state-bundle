@@ -39,13 +39,13 @@ class CompilationState
             return is_string($item);
         });
 
-        return in_array($this->getCurrentState(), $states);
+        return in_array($this->get(), $states);
     }
 
     /**
      * @return CompilationState::STATE_*
      */
-    public function getCurrentState(): string
+    public function get(): string
     {
         if (0 !== $this->callbackStore->getCompileFailureTypeCount()) {
             return CompilationState::STATE_FAILED;

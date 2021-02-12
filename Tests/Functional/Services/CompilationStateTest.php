@@ -142,31 +142,29 @@ class CompilationStateTest extends AbstractFunctionalTest
     }
 
     /**
-     * @dataProvider getCurrentStateDataProvider
+     * @dataProvider getDataProvider
      */
-    public function testGetCurrentState(
-        EntityConfiguration $entityConfiguration,
-        string $expectedCurrentState
-    ): void {
+    public function testGet(EntityConfiguration $entityConfiguration, string $expectedState): void
+    {
         $this->entityCreator->create($entityConfiguration);
 
-        self::assertSame($expectedCurrentState, $this->compilationState->getCurrentState());
+        self::assertSame($expectedState, $this->compilationState->get());
     }
 
     /**
      * @return array<mixed>
      */
-    public function getCurrentStateDataProvider(): array
+    public function getDataProvider(): array
     {
         return [
             'awaiting: no job' => [
                 'entityConfiguration' => new EntityConfiguration(),
-                'expectedCurrentState' => CompilationState::STATE_AWAITING,
+                'expectedState' => CompilationState::STATE_AWAITING,
             ],
             'awaiting: has job, no sources' => [
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create()),
-                'expectedCurrentState' => CompilationState::STATE_AWAITING,
+                'expectedState' => CompilationState::STATE_AWAITING,
             ],
             'running: has job, has sources, no sources compiled' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -177,7 +175,7 @@ class CompilationStateTest extends AbstractFunctionalTest
                         SourceConfiguration::create()
                             ->withPath('Test/test2.yml'),
                     ]),
-                'expectedCurrentState' => CompilationState::STATE_RUNNING,
+                'expectedState' => CompilationState::STATE_RUNNING,
             ],
             'failed: has job, has sources, has more than zero compile-failure callbacks' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -192,7 +190,7 @@ class CompilationStateTest extends AbstractFunctionalTest
                         CallbackConfiguration::create()
                             ->withType(CallbackInterface::TYPE_COMPILE_FAILURE)
                     ]),
-                'expectedCurrentState' => CompilationState::STATE_FAILED,
+                'expectedState' => CompilationState::STATE_FAILED,
             ],
             'complete: has job, has sources, no next source' => [
                 'entityConfiguration' => (new EntityConfiguration())
@@ -205,7 +203,7 @@ class CompilationStateTest extends AbstractFunctionalTest
                         TestConfiguration::create()
                             ->withSource('Test/test1.yml'),
                     ]),
-                'expectedCurrentState' => CompilationState::STATE_COMPLETE,
+                'expectedState' => CompilationState::STATE_COMPLETE,
             ],
         ];
     }

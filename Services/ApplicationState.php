@@ -52,10 +52,13 @@ class ApplicationState
             return is_string($item);
         });
 
-        return in_array($this->getCurrentState(), $states);
+        return in_array($this->get(), $states);
     }
 
-    public function getCurrentState(): string
+    /**
+     * @return ApplicationState::STATE_*
+     */
+    public function get(): string
     {
         if (false === $this->jobStore->has()) {
             return self::STATE_AWAITING_JOB;
