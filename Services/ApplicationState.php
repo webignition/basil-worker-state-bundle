@@ -58,7 +58,7 @@ class ApplicationState
             return self::STATE_AWAITING_SOURCES;
         }
 
-        if (false === $this->compilationState->is(...CompilationState::FINISHED_STATES)) {
+        if (false === in_array($this->compilationState->get(), CompilationState::FINISHED_STATES)) {
             return self::STATE_COMPILING;
         }
 
