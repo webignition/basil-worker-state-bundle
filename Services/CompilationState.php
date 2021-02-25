@@ -19,13 +19,10 @@ class CompilationState
         self::STATE_FAILED,
     ];
 
-    private CallbackStore $callbackStore;
-    private SourcePathFinder $sourcePathFinder;
-
-    public function __construct(CallbackStore $callbackStore, SourcePathFinder $sourcePathFinder)
-    {
-        $this->callbackStore = $callbackStore;
-        $this->sourcePathFinder = $sourcePathFinder;
+    public function __construct(
+        private CallbackStore $callbackStore,
+        private SourcePathFinder $sourcePathFinder
+    ) {
     }
 
     /**

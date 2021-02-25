@@ -18,27 +18,14 @@ class ApplicationState
     public const STATE_COMPLETE = 'complete';
     public const STATE_TIMED_OUT = 'timed-out';
 
-    private JobStore $jobStore;
-    private CompilationState $compilationState;
-    private ExecutionState $executionState;
-    private CallbackState $callbackState;
-    private CallbackStore $callbackStore;
-    private SourceStore $sourceStore;
-
     public function __construct(
-        JobStore $jobStore,
-        CompilationState $compilationState,
-        ExecutionState $executionState,
-        CallbackState $callbackState,
-        CallbackStore $callbackStore,
-        SourceStore $sourceStore
+        private JobStore $jobStore,
+        private CompilationState $compilationState,
+        private ExecutionState $executionState,
+        private CallbackState $callbackState,
+        private CallbackStore $callbackStore,
+        private SourceStore $sourceStore
     ) {
-        $this->jobStore = $jobStore;
-        $this->compilationState = $compilationState;
-        $this->executionState = $executionState;
-        $this->callbackState = $callbackState;
-        $this->callbackStore = $callbackStore;
-        $this->sourceStore = $sourceStore;
     }
 
     /**
