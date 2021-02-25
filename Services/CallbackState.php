@@ -13,13 +13,10 @@ class CallbackState
     public const STATE_RUNNING = 'running';
     public const STATE_COMPLETE = 'complete';
 
-    private CallbackStore $callbackStore;
-    private CallbackRepository $repository;
-
-    public function __construct(CallbackStore $callbackStore, CallbackRepository $repository)
-    {
-        $this->callbackStore = $callbackStore;
-        $this->repository = $repository;
+    public function __construct(
+        private CallbackStore $callbackStore,
+        private CallbackRepository $repository
+    ) {
     }
 
     /**

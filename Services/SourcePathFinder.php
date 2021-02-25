@@ -10,14 +10,12 @@ use webignition\StringPrefixRemover\DefinedStringPrefixRemover;
 
 class SourcePathFinder
 {
-    private TestRepository $testRepository;
-    private SourceStore $sourceStore;
     private DefinedStringPrefixRemover $compilerSourcePathPrefixRemover;
 
-    public function __construct(TestRepository $testRepository, SourceStore $sourceStore)
-    {
-        $this->testRepository = $testRepository;
-        $this->sourceStore = $sourceStore;
+    public function __construct(
+        private TestRepository $testRepository,
+        private SourceStore $sourceStore
+    ) {
     }
 
     public function setCompilerSourcePathPrefixRemover(

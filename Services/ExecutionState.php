@@ -19,11 +19,8 @@ class ExecutionState
         self::STATE_CANCELLED,
     ];
 
-    private TestRepository $testRepository;
-
-    public function __construct(TestRepository $testRepository)
+    public function __construct(private TestRepository $testRepository)
     {
-        $this->testRepository = $testRepository;
     }
 
     /**
