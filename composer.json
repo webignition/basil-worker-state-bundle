@@ -12,9 +12,9 @@
         }
     ],
     "require": {
-        "php": ">=7.4|^8",
+        "php": "8.*",
         "doctrine/doctrine-bundle": "^2.2",
-        "webignition/basil-worker-persistence-bundle": "^0.8.0",
+        "webignition/basil-worker-persistence-bundle": ">=0.9,<1",
         "webignition/string-prefix-remover": ">=0.2,<1"
     },
     "autoload": {
