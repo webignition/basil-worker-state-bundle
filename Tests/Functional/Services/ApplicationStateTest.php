@@ -158,12 +158,22 @@ class ApplicationStateTest extends AbstractFunctionalTest
                     ]),
                 'expectedState' => ApplicationState::STATE_COMPLETE,
             ],
-            'has a job-timeout callback' => [
+            'has a job-timeout callback via CallbackInterface::TYPE_JOB_TIMEOUT' => [
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withCallbackConfigurations([
                         CallbackConfiguration::create()
                             ->withType(CallbackInterface::TYPE_JOB_TIMEOUT)
+                            ->withState(CallbackInterface::STATE_COMPLETE),
+                    ]),
+                'expectedState' => ApplicationState::STATE_TIMED_OUT,
+            ],
+            'has a job-timeout callback via CallbackInterface::TYPE_JOB_TIME_OUT' => [
+                'entityConfiguration' => (new EntityConfiguration())
+                    ->withJobConfiguration(JobConfiguration::create())
+                    ->withCallbackConfigurations([
+                        CallbackConfiguration::create()
+                            ->withType(CallbackInterface::TYPE_JOB_TIME_OUT)
                             ->withState(CallbackInterface::STATE_COMPLETE),
                     ]),
                 'expectedState' => ApplicationState::STATE_TIMED_OUT,

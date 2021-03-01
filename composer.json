@@ -14,7 +14,7 @@
     "require": {
         "php": "8.*",
         "doctrine/doctrine-bundle": "^2.2",
-        "webignition/basil-worker-persistence-bundle": ">=0.9,<1",
+        "webignition/basil-worker-persistence-bundle": ">=0.13,<1",
         "webignition/string-prefix-remover": ">=0.2,<1"
     },
     "autoload": {
