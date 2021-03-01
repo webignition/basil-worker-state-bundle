@@ -163,7 +163,7 @@ class ApplicationStateTest extends AbstractFunctionalTest
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withCallbackConfigurations([
                         CallbackConfiguration::create()
-                            ->withType(CallbackInterface::TYPE_JOB_TIMEOUT)
+                            ->withType(CallbackInterface::TYPE_JOB_TIME_OUT)
                             ->withState(CallbackInterface::STATE_COMPLETE),
                     ]),
                 'expectedState' => ApplicationState::STATE_TIMED_OUT,

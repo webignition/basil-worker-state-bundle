@@ -8,7 +8,7 @@ use webignition\BasilWorker\PersistenceBundle\Entity\Callback\CallbackInterface;
 
 class CallbackConfiguration
 {
-    private const DEFAULT_TYPE = CallbackInterface::TYPE_EXECUTE_DOCUMENT_RECEIVED;
+    private const DEFAULT_TYPE = CallbackInterface::TYPE_STEP_PASSED;
     private const DEFAULT_PAYLOAD = [];
     private const DEFAULT_STATE = CallbackInterface::STATE_AWAITING;
 
