@@ -74,7 +74,7 @@ class CompilationStateTest extends AbstractFunctionalTest
                     ])
                     ->withCallbackConfigurations([
                         CallbackConfiguration::create()
-                            ->withType(CallbackInterface::TYPE_COMPILE_FAILURE)
+                            ->withType(CallbackInterface::TYPE_COMPILATION_FAILED)
                     ]),
                 'expectedState' => CompilationState::STATE_FAILED,
             ],
