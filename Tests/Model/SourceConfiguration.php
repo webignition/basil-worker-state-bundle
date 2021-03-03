@@ -9,18 +9,10 @@ use webignition\BasilWorker\PersistenceBundle\Entity\Source;
 class SourceConfiguration
 {
     /**
-     * @var Source::TYPE_* $type
+     * @param Source::TYPE_* $type $type
      */
-    private string $type;
-    private string $path;
-
-    /**
-     * @param Source::TYPE_* $type
-     */
-    public function __construct(string $type, string $path)
+    public function __construct(private string $type, private string $path)
     {
-        $this->type = $type;
-        $this->path = $path;
     }
 
     public static function create(): SourceConfiguration

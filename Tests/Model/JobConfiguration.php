@@ -6,15 +6,11 @@ namespace webignition\BasilWorker\StateBundle\Tests\Model;
 
 class JobConfiguration
 {
-    private string $label;
-    private string $callbackUrl;
-    private int $maximumDurationInSeconds;
-
-    public function __construct(string $label, string $callbackUrl, int $maximumDurationInSeconds)
-    {
-        $this->label = $label;
-        $this->callbackUrl = $callbackUrl;
-        $this->maximumDurationInSeconds = $maximumDurationInSeconds;
+    public function __construct(
+        private string $label,
+        private string $callbackUrl,
+        private int $maximumDurationInSeconds
+    ) {
     }
 
     public static function create(): JobConfiguration
