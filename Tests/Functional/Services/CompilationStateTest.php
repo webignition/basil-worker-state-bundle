@@ -34,7 +34,7 @@ class CompilationStateTest extends AbstractFunctionalTest
     {
         $this->entityCreator->create($entityConfiguration);
 
-        self::assertSame($expectedState, $this->compilationState->get());
+        self::assertSame($expectedState, (string) $this->compilationState);
     }
 
     /**

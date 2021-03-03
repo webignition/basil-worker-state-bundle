@@ -34,7 +34,7 @@ class CallbackStateTest extends AbstractFunctionalTest
             $this->createCallbackEntity($callbackState);
         }
 
-        self:self::assertSame($expectedState, $this->callbackState->get());
+        self:self::assertSame($expectedState, (string) $this->callbackState);
     }
 
     /**

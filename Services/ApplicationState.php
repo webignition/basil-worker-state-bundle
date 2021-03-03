@@ -8,7 +8,7 @@ use webignition\BasilWorker\PersistenceBundle\Services\Store\CallbackStore;
 use webignition\BasilWorker\PersistenceBundle\Services\Store\JobStore;
 use webignition\BasilWorker\PersistenceBundle\Services\Store\SourceStore;
 
-class ApplicationState
+class ApplicationState implements \Stringable
 {
     public const STATE_AWAITING_JOB = 'awaiting-job';
     public const STATE_AWAITING_SOURCES = 'awaiting-sources';
@@ -31,7 +31,7 @@ class ApplicationState
     /**
      * @return ApplicationState::STATE_*
      */
-    public function get(): string
+    public function __toString(): string
     {
         if (false === $this->jobStore->has()) {
             return self::STATE_AWAITING_JOB;
@@ -45,15 +45,15 @@ class ApplicationState
             return self::STATE_AWAITING_SOURCES;
         }
 
-        if (false === in_array($this->compilationState->get(), CompilationState::FINISHED_STATES)) {
+        if (false === in_array($this->compilationState, CompilationState::FINISHED_STATES)) {
             return self::STATE_COMPILING;
         }
 
-        if (false === in_array($this->executionState->get(), ExecutionState::FINISHED_STATES)) {
+        if (false === in_array($this->executionState, ExecutionState::FINISHED_STATES)) {
             return self::STATE_EXECUTING;
         }
 
-        if (in_array($this->callbackState->get(), [CallbackState::STATE_AWAITING, CallbackState::STATE_RUNNING])) {
+        if (in_array($this->callbackState, [CallbackState::STATE_AWAITING, CallbackState::STATE_RUNNING])) {
             return self::STATE_COMPLETING_CALLBACKS;
         }
 
