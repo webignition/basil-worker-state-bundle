@@ -40,7 +40,7 @@
         "phpstan/phpstan-symfony": "^0.12.11",
         "phpunit/phpunit": "^9.4",
         "squizlabs/php_codesniffer": "dev-master",
-        "symplify/easy-coding-standard": "^8.3",
+        "symplify/easy-coding-standard": "9.*",
         "webignition/symfony-test-service-injector-trait": "^0.2.0"
     },
     "scripts": {
