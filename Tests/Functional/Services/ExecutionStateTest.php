@@ -30,7 +30,7 @@ class ExecutionStateTest extends AbstractFunctionalTest
     {
         $this->entityCreator->create($entityConfiguration);
 
-        self::assertSame($expectedState, $this->executionState->get());
+        self::assertSame($expectedState, (string) $this->executionState);
     }
 
     /**

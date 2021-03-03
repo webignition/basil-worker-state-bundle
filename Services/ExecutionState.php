@@ -7,7 +7,7 @@ namespace webignition\BasilWorker\StateBundle\Services;
 use webignition\BasilWorker\PersistenceBundle\Entity\Test;
 use webignition\BasilWorker\PersistenceBundle\Services\Repository\TestRepository;
 
-class ExecutionState
+class ExecutionState implements \Stringable
 {
     public const STATE_AWAITING = 'awaiting';
     public const STATE_RUNNING = 'running';
@@ -26,7 +26,7 @@ class ExecutionState
     /**
      * @return ExecutionState::STATE_*
      */
-    public function get(): string
+    public function __toString(): string
     {
         $hasFailedTests = 0 !== $this->testRepository->count(['state' => Test::STATE_FAILED]);
         $hasCancelledTests = 0 !== $this->testRepository->count(['state' => Test::STATE_CANCELLED]);

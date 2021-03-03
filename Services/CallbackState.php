@@ -7,7 +7,7 @@ namespace webignition\BasilWorker\StateBundle\Services;
 use webignition\BasilWorker\PersistenceBundle\Services\Repository\CallbackRepository;
 use webignition\BasilWorker\PersistenceBundle\Services\Store\CallbackStore;
 
-class CallbackState
+class CallbackState implements \Stringable
 {
     public const STATE_AWAITING = 'awaiting';
     public const STATE_RUNNING = 'running';
@@ -22,7 +22,7 @@ class CallbackState
     /**
      * @return CallbackState::STATE_*
      */
-    public function get(): string
+    public function __toString(): string
     {
         $callbackCount = $this->repository->count([]);
         $finishedCallbackCount = $this->callbackStore->getFinishedCount();

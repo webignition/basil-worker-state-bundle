@@ -6,7 +6,7 @@ namespace webignition\BasilWorker\StateBundle\Services;
 
 use webignition\BasilWorker\PersistenceBundle\Services\Store\CallbackStore;
 
-class CompilationState
+class CompilationState implements \Stringable
 {
     public const STATE_AWAITING = 'awaiting';
     public const STATE_RUNNING = 'running';
@@ -28,7 +28,7 @@ class CompilationState
     /**
      * @return CompilationState::STATE_*
      */
-    public function get(): string
+    public function __toString(): string
     {
         if (0 !== $this->callbackStore->getCompileFailureTypeCount()) {
             return CompilationState::STATE_FAILED;
