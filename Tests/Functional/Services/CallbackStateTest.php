@@ -88,8 +88,6 @@ class CallbackStateTest extends AbstractFunctionalTest
 
     /**
      * @param CallbackEntity::STATE_* $state
-     *
-     * @return CallbackEntity
      */
     private function createCallbackEntity(string $state): CallbackEntity
     {

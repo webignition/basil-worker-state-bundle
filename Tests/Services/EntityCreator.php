@@ -14,24 +14,13 @@ use webignition\BasilWorker\StateBundle\Tests\Model\JobConfiguration;
 
 class EntityCreator
 {
-    private EntityManagerInterface $entityManager;
-    private JobFactory $jobFactory;
-    private SourceFactory $sourceFactory;
-    private TestFactory $testFactory;
-    private CallbackFactory $callbackFactory;
-
     public function __construct(
-        EntityManagerInterface $entityManager,
-        JobFactory $jobFactory,
-        SourceFactory $sourceFactory,
-        TestFactory $testFactory,
-        CallbackFactory $callbackFactory
+        private EntityManagerInterface $entityManager,
+        private JobFactory $jobFactory,
+        private SourceFactory $sourceFactory,
+        private TestFactory $testFactory,
+        private CallbackFactory $callbackFactory
     ) {
-        $this->entityManager = $entityManager;
-        $this->jobFactory = $jobFactory;
-        $this->sourceFactory = $sourceFactory;
-        $this->testFactory = $testFactory;
-        $this->callbackFactory = $callbackFactory;
     }
 
     public function create(EntityConfiguration $entityConfiguration): void
