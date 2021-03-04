@@ -45,7 +45,7 @@ class ApplicationState implements \Stringable
             return self::STATE_AWAITING_SOURCES;
         }
 
-        if (false === in_array($this->compilationState, CompilationState::FINISHED_STATES)) {
+        if (false === $this->compilationState->is(...CompilationState::FINISHED_STATES)) {
             return self::STATE_COMPILING;
         }
 
