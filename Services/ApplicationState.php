@@ -49,7 +49,7 @@ class ApplicationState implements \Stringable
             return self::STATE_COMPILING;
         }
 
-        if (false === in_array($this->executionState, ExecutionState::FINISHED_STATES)) {
+        if (false === $this->executionState->is(...ExecutionState::FINISHED_STATES)) {
             return self::STATE_EXECUTING;
         }
 

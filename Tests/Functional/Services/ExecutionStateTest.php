@@ -101,4 +101,141 @@ class ExecutionStateTest extends AbstractFunctionalTest
             ],
         ];
     }
+
+    /**
+     * @dataProvider isDataProvider
+     *
+     * @param array<ExecutionState::STATE_*> $expectedIsStates
+     * @param array<ExecutionState::STATE_*> $expectedIsNotStates
+     */
+    public function testIs(
+        EntityConfiguration $entityConfiguration,
+        array $expectedIsStates,
+        array $expectedIsNotStates
+    ): void {
+        $this->entityCreator->create($entityConfiguration);
+
+        self::assertTrue($this->executionState->is(...$expectedIsStates));
+        self::assertFalse($this->executionState->is(...$expectedIsNotStates));
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    public function isDataProvider(): array
+    {
+        return [
+            'awaiting: not has finished tests and not has running tests and not has awaiting tests' => [
+                'entityConfiguration' => new EntityConfiguration(),
+                'expectedIsStates' => [
+                    ExecutionState::STATE_AWAITING,
+                ],
+                'expectedIsNotStates' => [
+                    ExecutionState::STATE_RUNNING,
+                    ExecutionState::STATE_COMPLETE,
+                    ExecutionState::STATE_CANCELLED,
+                ],
+            ],
+            'running: not has finished tests and has running tests and not has awaiting tests' => [
+                'entityConfiguration' => (new EntityConfiguration())
+                    ->withTestConfigurations([
+                        TestConfiguration::create()->withState(Test::STATE_RUNNING),
+                    ]),
+                'expectedIsStates' => [
+                    ExecutionState::STATE_RUNNING,
+                ],
+                'expectedIsNotStates' => [
+                    ExecutionState::STATE_AWAITING,
+                    ExecutionState::STATE_COMPLETE,
+                    ExecutionState::STATE_CANCELLED,
+                ],
+            ],
+            'awaiting: not has finished tests and not has running tests and has awaiting tests' => [
+                'entityConfiguration' => (new EntityConfiguration())
+                    ->withTestConfigurations([
+                        TestConfiguration::create()->withState(Test::STATE_AWAITING),
+                    ]),
+                'expectedIsStates' => [
+                    ExecutionState::STATE_AWAITING,
+                ],
+                'expectedIsNotStates' => [
+                    ExecutionState::STATE_RUNNING,
+                    ExecutionState::STATE_COMPLETE,
+                    ExecutionState::STATE_CANCELLED,
+                ],
+            ],
+            'running: has complete tests and has running tests and not has awaiting tests' => [
+                'entityConfiguration' => (new EntityConfiguration())
+                    ->withTestConfigurations([
+                        TestConfiguration::create()->withState(Test::STATE_COMPLETE),
+                        TestConfiguration::create()->withState(Test::STATE_RUNNING),
+                    ]),
+                'expectedIsStates' => [
+                    ExecutionState::STATE_RUNNING,
+                ],
+                'expectedIsNotStates' => [
+                    ExecutionState::STATE_AWAITING,
+                    ExecutionState::STATE_COMPLETE,
+                    ExecutionState::STATE_CANCELLED,
+                ],
+            ],
+            'running: has complete tests and not has running tests and has awaiting tests' => [
+                'entityConfiguration' => (new EntityConfiguration())
+                    ->withTestConfigurations([
+                        TestConfiguration::create()->withState(Test::STATE_COMPLETE),
+                        TestConfiguration::create()->withState(Test::STATE_AWAITING),
+                    ]),
+                'expectedIsStates' => [
+                    ExecutionState::STATE_RUNNING,
+                ],
+                'expectedIsNotStates' => [
+                    ExecutionState::STATE_AWAITING,
+                    ExecutionState::STATE_COMPLETE,
+                    ExecutionState::STATE_CANCELLED,
+                ],
+            ],
+            'complete: has finished tests and not has running tests and not has awaiting tests' => [
+                'entityConfiguration' => (new EntityConfiguration())
+                    ->withTestConfigurations([
+                        TestConfiguration::create()->withState(Test::STATE_COMPLETE),
+                    ]),
+                'expectedIsStates' => [
+                    ExecutionState::STATE_COMPLETE,
+                ],
+                'expectedIsNotStates' => [
+                    ExecutionState::STATE_AWAITING,
+                    ExecutionState::STATE_RUNNING,
+                    ExecutionState::STATE_CANCELLED,
+                ],
+            ],
+            'cancelled: has failed tests' => [
+                'entityConfiguration' => (new EntityConfiguration())
+                    ->withTestConfigurations([
+                        TestConfiguration::create()->withState(Test::STATE_FAILED),
+                    ]),
+                'expectedIsStates' => [
+                    ExecutionState::STATE_CANCELLED,
+                ],
+                'expectedIsNotStates' => [
+                    ExecutionState::STATE_AWAITING,
+                    ExecutionState::STATE_RUNNING,
+                    ExecutionState::STATE_COMPLETE,
+                ],
+            ],
+            'cancelled: has cancelled tests' => [
+                'entityConfiguration' => (new EntityConfiguration())
+                    ->withTestConfigurations([
+                        TestConfiguration::create()->withState(Test::STATE_CANCELLED),
+                    ]),
+                'expectedIsStates' => [
+                    ExecutionState::STATE_CANCELLED,
+                ],
+                'expectedIsNotStates' => [
+                    ExecutionState::STATE_AWAITING,
+                    ExecutionState::STATE_RUNNING,
+                    ExecutionState::STATE_COMPLETE,
+                ],
+            ],
+        ];
+    }
 }
