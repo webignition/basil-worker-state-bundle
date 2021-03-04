@@ -53,7 +53,7 @@ class ApplicationState implements \Stringable
             return self::STATE_EXECUTING;
         }
 
-        if (in_array($this->callbackState, [CallbackState::STATE_AWAITING, CallbackState::STATE_RUNNING])) {
+        if ($this->callbackState->is(CallbackState::STATE_AWAITING, CallbackState::STATE_RUNNING)) {
             return self::STATE_COMPLETING_CALLBACKS;
         }
 
