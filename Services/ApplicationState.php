@@ -29,6 +29,20 @@ class ApplicationState implements \Stringable
     }
 
     /**
+     * @param ApplicationState::STATE_* ...$states
+     *
+     * @return bool
+     */
+    public function is(...$states): bool
+    {
+        $states = array_filter($states, function ($item) {
+            return is_string($item);
+        });
+
+        return in_array((string) $this, $states);
+    }
+
+    /**
      * @return ApplicationState::STATE_*
      */
     public function __toString(): string
@@ -45,15 +59,15 @@ class ApplicationState implements \Stringable
             return self::STATE_AWAITING_SOURCES;
         }
 
-        if (false === in_array($this->compilationState, CompilationState::FINISHED_STATES)) {
+        if (false === $this->compilationState->is(...CompilationState::FINISHED_STATES)) {
             return self::STATE_COMPILING;
         }
 
-        if (false === in_array($this->executionState, ExecutionState::FINISHED_STATES)) {
+        if (false === $this->executionState->is(...ExecutionState::FINISHED_STATES)) {
             return self::STATE_EXECUTING;
         }
 
-        if (in_array($this->callbackState, [CallbackState::STATE_AWAITING, CallbackState::STATE_RUNNING])) {
+        if ($this->callbackState->is(CallbackState::STATE_AWAITING, CallbackState::STATE_RUNNING)) {
             return self::STATE_COMPLETING_CALLBACKS;
         }
 

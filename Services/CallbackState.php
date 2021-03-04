@@ -20,7 +20,21 @@ class CallbackState implements \Stringable
     }
 
     /**
-     * @return CallbackState::STATE_*
+     * @param CallbackState::STATE_* ...$states
+     *
+     * @return bool
+     */
+    public function is(...$states): bool
+    {
+        $states = array_filter($states, function ($item) {
+            return is_string($item);
+        });
+
+        return in_array((string) $this, $states);
+    }
+
+    /**
+     * @return self::STATE_*
      */
     public function __toString(): string
     {
