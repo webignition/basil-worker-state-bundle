@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace webignition\BasilWorker\StateBundle\Services;
 
+use webignition\BasilWorker\PersistenceBundle\Entity\Callback\CallbackInterface;
 use webignition\BasilWorker\PersistenceBundle\Services\Store\CallbackStore;
 use webignition\BasilWorker\PersistenceBundle\Services\Store\JobStore;
 use webignition\BasilWorker\PersistenceBundle\Services\Store\SourceStore;
@@ -51,7 +52,7 @@ class ApplicationState implements \Stringable
             return self::STATE_AWAITING_JOB;
         }
 
-        if (0 !== $this->callbackStore->getJobTimeoutTypeCount()) {
+        if (0 !== $this->callbackStore->getTypeCount(CallbackInterface::TYPE_JOB_TIME_OUT)) {
             return self::STATE_TIMED_OUT;
         }
 

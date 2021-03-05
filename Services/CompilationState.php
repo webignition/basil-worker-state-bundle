@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace webignition\BasilWorker\StateBundle\Services;
 
+use webignition\BasilWorker\PersistenceBundle\Entity\Callback\CallbackInterface;
 use webignition\BasilWorker\PersistenceBundle\Services\Store\CallbackStore;
 
 class CompilationState implements \Stringable
@@ -44,7 +45,7 @@ class CompilationState implements \Stringable
      */
     public function __toString(): string
     {
-        if (0 !== $this->callbackStore->getCompileFailureTypeCount()) {
+        if (0 !== $this->callbackStore->getTypeCount(CallbackInterface::TYPE_COMPILATION_FAILED)) {
             return CompilationState::STATE_FAILED;
         }
 
