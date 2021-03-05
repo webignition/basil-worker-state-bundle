@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7e1fb0da2f3cdac68ab9b0854ef04d9",
+    "content-hash": "c6b603d5595bc579d0547595e27bc787",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -3687,16 +3687,16 @@
         },
         {
             "name": "webignition/basil-worker-persistence-bundle",
-            "version": "0.14",
+            "version": "0.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webignition/basil-worker-persistence-bundle.git",
-                "reference": "3399f8c800fae0b1312968420cce55cde092b775"
+                "reference": "41af7b67508940ac06f690282eb460f5860bc5d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/basil-worker-persistence-bundle/zipball/3399f8c800fae0b1312968420cce55cde092b775",
-                "reference": "3399f8c800fae0b1312968420cce55cde092b775",
+                "url": "https://api.github.com/repos/webignition/basil-worker-persistence-bundle/zipball/41af7b67508940ac06f690282eb460f5860bc5d5",
+                "reference": "41af7b67508940ac06f690282eb460f5860bc5d5",
                 "shasum": ""
             },
             "require": {
@@ -3742,9 +3742,9 @@
             "homepage": "https://github.com/webignition/basil-worker-persistence-bundle",
             "support": {
                 "issues": "https://github.com/webignition/basil-worker-persistence-bundle/issues",
-                "source": "https://github.com/webignition/basil-worker-persistence-bundle/tree/0.14"
+                "source": "https://github.com/webignition/basil-worker-persistence-bundle/tree/0.24"
             },
-            "time": "2021-03-01T16:57:51+00:00"
+            "time": "2021-03-05T17:51:54+00:00"
         },
         {
             "name": "webignition/string-prefix-remover",
