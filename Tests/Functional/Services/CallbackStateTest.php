@@ -90,8 +90,8 @@ class CallbackStateTest extends AbstractFunctionalTest
      * @dataProvider isDataProvider
      *
      * @param array<CallbackInterface::STATE_*> $callbackStates
-     * @param array<CallbackState::STATE_*> $expectedIsStates
-     * @param array<CallbackState::STATE_*> $expectedIsNotStates
+     * @param array<CallbackState::STATE_*>     $expectedIsStates
+     * @param array<CallbackState::STATE_*>     $expectedIsNotStates
      */
     public function testIs(array $callbackStates, array $expectedIsStates, array $expectedIsNotStates): void
     {

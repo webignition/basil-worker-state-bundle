@@ -27,7 +27,6 @@ class CallbackConfiguration
      */
     private string $state = self::DEFAULT_STATE;
 
-
     public static function create(): CallbackConfiguration
     {
         return new CallbackConfiguration();

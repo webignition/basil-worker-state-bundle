@@ -27,20 +27,6 @@ class CompilationState implements \Stringable
     }
 
     /**
-     * @param CompilationState::STATE_* ...$states
-     *
-     * @return bool
-     */
-    public function is(...$states): bool
-    {
-        $states = array_filter($states, function ($item) {
-            return is_string($item);
-        });
-
-        return in_array((string) $this, $states);
-    }
-
-    /**
      * @return CompilationState::STATE_*
      */
     public function __toString(): string
@@ -61,5 +47,17 @@ class CompilationState implements \Stringable
         return is_string($nextSource)
             ? CompilationState::STATE_RUNNING
             : CompilationState::STATE_COMPLETE;
+    }
+
+    /**
+     * @param CompilationState::STATE_* ...$states
+     */
+    public function is(...$states): bool
+    {
+        $states = array_filter($states, function ($item) {
+            return is_string($item);
+        });
+
+        return in_array((string) $this, $states);
     }
 }

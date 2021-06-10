@@ -24,20 +24,6 @@ class ExecutionState implements \Stringable
     }
 
     /**
-     * @param ExecutionState::STATE_* ...$states
-     *
-     * @return bool
-     */
-    public function is(...$states): bool
-    {
-        $states = array_filter($states, function ($item) {
-            return is_string($item);
-        });
-
-        return in_array((string) $this, $states);
-    }
-
-    /**
      * @return ExecutionState::STATE_*
      */
     public function __toString(): string
@@ -60,5 +46,17 @@ class ExecutionState implements \Stringable
         }
 
         return $hasRunningTests ? self::STATE_RUNNING : self::STATE_AWAITING;
+    }
+
+    /**
+     * @param ExecutionState::STATE_* ...$states
+     */
+    public function is(...$states): bool
+    {
+        $states = array_filter($states, function ($item) {
+            return is_string($item);
+        });
+
+        return in_array((string) $this, $states);
     }
 }

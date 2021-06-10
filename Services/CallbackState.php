@@ -20,20 +20,6 @@ class CallbackState implements \Stringable
     }
 
     /**
-     * @param CallbackState::STATE_* ...$states
-     *
-     * @return bool
-     */
-    public function is(...$states): bool
-    {
-        $states = array_filter($states, function ($item) {
-            return is_string($item);
-        });
-
-        return in_array((string) $this, $states);
-    }
-
-    /**
      * @return self::STATE_*
      */
     public function __toString(): string
@@ -48,5 +34,17 @@ class CallbackState implements \Stringable
         return $finishedCallbackCount === $callbackCount
             ? self::STATE_COMPLETE
             : self::STATE_RUNNING;
+    }
+
+    /**
+     * @param CallbackState::STATE_* ...$states
+     */
+    public function is(...$states): bool
+    {
+        $states = array_filter($states, function ($item) {
+            return is_string($item);
+        });
+
+        return in_array((string) $this, $states);
     }
 }
