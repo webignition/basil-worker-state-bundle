@@ -15,7 +15,7 @@
         "php": "8.*",
         "doctrine/doctrine-bundle": "^2.2",
         "symfony/yaml": "^5.3",
-        "webignition/basil-worker-persistence-bundle": ">=0.24,<1",
+        "webignition/basil-worker-persistence-bundle": ">=0.27,<1",
         "webignition/string-prefix-remover": ">=0.2,<1"
     },
     "autoload": {
