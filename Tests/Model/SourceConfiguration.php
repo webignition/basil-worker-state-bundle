@@ -20,6 +20,11 @@ class SourceConfiguration
         return new SourceConfiguration(Source::TYPE_TEST, $path);
     }
 
+    public static function createResource(string $path = 'page.yml'): SourceConfiguration
+    {
+        return new SourceConfiguration(Source::TYPE_RESOURCE, $path);
+    }
+
     /**
      * @return Source::TYPE_* $type
      */
