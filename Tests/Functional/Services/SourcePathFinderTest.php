@@ -49,9 +49,9 @@ class SourcePathFinderTest extends AbstractFunctionalTest
         ];
 
         $sourceConfigurations = [
-            SourceConfiguration::create()->withPath($sources[0]),
-            SourceConfiguration::create()->withPath($sources[1]),
-            SourceConfiguration::create()->withPath($sources[2]),
+            SourceConfiguration::createTest()->withPath($sources[0]),
+            SourceConfiguration::createTest()->withPath($sources[1]),
+            SourceConfiguration::createTest()->withPath($sources[2]),
         ];
 
         return [
@@ -135,9 +135,9 @@ class SourcePathFinderTest extends AbstractFunctionalTest
         ];
 
         $sourceConfigurations = [
-            SourceConfiguration::create()->withPath($sources[0]),
-            SourceConfiguration::create()->withPath($sources[1]),
-            SourceConfiguration::create()->withPath($sources[2]),
+            SourceConfiguration::createTest()->withPath($sources[0]),
+            SourceConfiguration::createTest()->withPath($sources[1]),
+            SourceConfiguration::createTest()->withPath($sources[2]),
         ];
 
         return [

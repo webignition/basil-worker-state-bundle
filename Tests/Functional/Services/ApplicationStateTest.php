@@ -56,8 +56,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ]),
                 'expectedState' => ApplicationState::STATE_COMPILING,
             ],
@@ -65,8 +65,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ])
                     ->withTestConfigurations([
                         TestConfiguration::create()->withSource('/app/source/Test/test1.yml'),
@@ -77,8 +77,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ])
                     ->withTestConfigurations([
                         TestConfiguration::create()->withSource('/app/source/Test/test1.yml'),
@@ -90,8 +90,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ])
                     ->withTestConfigurations([
                         TestConfiguration::create()
@@ -105,8 +105,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ])
                     ->withTestConfigurations([
                         TestConfiguration::create()
@@ -122,8 +122,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ])
                     ->withTestConfigurations([
                         TestConfiguration::create()
@@ -142,8 +142,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ])
                     ->withTestConfigurations([
                         TestConfiguration::create()
@@ -237,8 +237,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ]),
                 'expectedIsStates' => [
                     ApplicationState::STATE_COMPILING,
@@ -256,8 +256,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ])
                     ->withTestConfigurations([
                         TestConfiguration::create()->withSource('/app/source/Test/test1.yml'),
@@ -278,8 +278,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ])
                     ->withTestConfigurations([
                         TestConfiguration::create()->withSource('/app/source/Test/test1.yml'),
@@ -301,8 +301,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ])
                     ->withTestConfigurations([
                         TestConfiguration::create()
@@ -326,8 +326,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ])
                     ->withTestConfigurations([
                         TestConfiguration::create()
@@ -353,8 +353,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ])
                     ->withTestConfigurations([
                         TestConfiguration::create()
@@ -383,8 +383,8 @@ class ApplicationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()->withPath('Test/test2.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test1.yml'),
+                        SourceConfiguration::createTest()->withPath('Test/test2.yml'),
                     ])
                     ->withTestConfigurations([
                         TestConfiguration::create()
