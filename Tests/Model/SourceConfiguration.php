@@ -15,9 +15,14 @@ class SourceConfiguration
     {
     }
 
-    public static function create(): SourceConfiguration
+    public static function createTest(string $path = 'test.yml'): SourceConfiguration
     {
-        return new SourceConfiguration(Source::TYPE_TEST, 'test.yml');
+        return new SourceConfiguration(Source::TYPE_TEST, $path);
+    }
+
+    public static function createResource(string $path = 'page.yml'): SourceConfiguration
+    {
+        return new SourceConfiguration(Source::TYPE_RESOURCE, $path);
     }
 
     /**

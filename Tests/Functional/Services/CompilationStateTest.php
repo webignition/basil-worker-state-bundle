@@ -56,9 +56,9 @@ class CompilationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()
+                        SourceConfiguration::createTest()
                             ->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()
+                        SourceConfiguration::createTest()
                             ->withPath('Test/test2.yml'),
                     ]),
                 'expectedState' => CompilationState::STATE_RUNNING,
@@ -67,9 +67,9 @@ class CompilationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()
+                        SourceConfiguration::createTest()
                             ->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()
+                        SourceConfiguration::createTest()
                             ->withPath('Test/test2.yml'),
                     ])
                     ->withCallbackConfigurations([
@@ -82,7 +82,7 @@ class CompilationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()
+                        SourceConfiguration::createTest()
                             ->withPath('Test/test1.yml'),
                     ])
                     ->withTestConfigurations([
@@ -146,9 +146,9 @@ class CompilationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()
+                        SourceConfiguration::createTest()
                             ->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()
+                        SourceConfiguration::createTest()
                             ->withPath('Test/test2.yml'),
                     ]),
                 'expectedIsStates' => [
@@ -165,9 +165,9 @@ class CompilationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()
+                        SourceConfiguration::createTest()
                             ->withPath('Test/test1.yml'),
-                        SourceConfiguration::create()
+                        SourceConfiguration::createTest()
                             ->withPath('Test/test2.yml'),
                     ])
                     ->withCallbackConfigurations([
@@ -188,7 +188,7 @@ class CompilationStateTest extends AbstractFunctionalTest
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations([
-                        SourceConfiguration::create()
+                        SourceConfiguration::createTest()
                             ->withPath('Test/test1.yml'),
                     ])
                     ->withTestConfigurations([
