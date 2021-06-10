@@ -43,15 +43,21 @@ class SourcePathFinderTest extends AbstractFunctionalTest
     public function findNextNonCompiledPathDataProvider(): array
     {
         $sources = [
-            'Test/testZebra.yml',
+            'Page/page1.yml',
             'Test/testApple.yml',
+            'Page/page2.yml',
             'Test/testBat.yml',
+            'Page/page3.yml',
+            'Test/testZebra.yml',
         ];
 
         $sourceConfigurations = [
-            SourceConfiguration::createTest()->withPath($sources[0]),
+            SourceConfiguration::createResource()->withPath($sources[0]),
             SourceConfiguration::createTest()->withPath($sources[1]),
-            SourceConfiguration::createTest()->withPath($sources[2]),
+            SourceConfiguration::createResource()->withPath($sources[2]),
+            SourceConfiguration::createTest()->withPath($sources[3]),
+            SourceConfiguration::createResource()->withPath($sources[4]),
+            SourceConfiguration::createTest()->withPath($sources[5]),
         ];
 
         return [
@@ -64,45 +70,55 @@ class SourcePathFinderTest extends AbstractFunctionalTest
                     ->withJobConfiguration(JobConfiguration::create()),
                 'expectedNextNonCompiledSource' => null,
             ],
+            'has job, has resource-only sources, no tests' => [
+                'entityConfiguration' => (new EntityConfiguration())
+                    ->withJobConfiguration(JobConfiguration::create())
+                    ->withSourceConfigurations([
+                        $sourceConfigurations[0],
+                        $sourceConfigurations[2],
+                        $sourceConfigurations[4],
+                    ]),
+                'expectedNextNonCompiledSource' => null,
+            ],
             'has job, has sources, no tests' => [
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations($sourceConfigurations),
-                'expectedNextNonCompiledSource' => $sources[0],
-            ],
-            'test exists for first source' => [
-                'entityConfiguration' => (new EntityConfiguration())
-                    ->withJobConfiguration(JobConfiguration::create())
-                    ->withSourceConfigurations($sourceConfigurations)
-                    ->withTestConfigurations([
-                        TestConfiguration::create()
-                            ->withSource('/app/source/' . $sources[0]),
-                    ]),
                 'expectedNextNonCompiledSource' => $sources[1],
             ],
-            'test exists for first and second sources' => [
+            'test exists for first test source' => [
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations($sourceConfigurations)
                     ->withTestConfigurations([
-                        TestConfiguration::create()
-                            ->withSource('/app/source/' . $sources[0]),
                         TestConfiguration::create()
                             ->withSource('/app/source/' . $sources[1]),
                     ]),
-                'expectedNextNonCompiledSource' => $sources[2],
+                'expectedNextNonCompiledSource' => $sources[3],
             ],
-            'tests exist for all sources' => [
+            'test exists for first and second test sources' => [
                 'entityConfiguration' => (new EntityConfiguration())
                     ->withJobConfiguration(JobConfiguration::create())
                     ->withSourceConfigurations($sourceConfigurations)
                     ->withTestConfigurations([
                         TestConfiguration::create()
-                            ->withSource('/app/source/' . $sources[0]),
+                            ->withSource('/app/source/' . $sources[1]),
+                        TestConfiguration::create()
+                            ->withSource('/app/source/' . $sources[3]),
+                    ]),
+                'expectedNextNonCompiledSource' => $sources[5],
+            ],
+            'tests exist for all test sources' => [
+                'entityConfiguration' => (new EntityConfiguration())
+                    ->withJobConfiguration(JobConfiguration::create())
+                    ->withSourceConfigurations($sourceConfigurations)
+                    ->withTestConfigurations([
                         TestConfiguration::create()
                             ->withSource('/app/source/' . $sources[1]),
                         TestConfiguration::create()
-                            ->withSource('/app/source/' . $sources[2]),
+                            ->withSource('/app/source/' . $sources[3]),
+                        TestConfiguration::create()
+                            ->withSource('/app/source/' . $sources[5]),
                     ]),
                 'expectedNextNonCompiledSource' => null,
             ],

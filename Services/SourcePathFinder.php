@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace webignition\BasilWorker\StateBundle\Services;
 
+use webignition\BasilWorker\PersistenceBundle\Entity\Source;
 use webignition\BasilWorker\PersistenceBundle\Services\Repository\TestRepository;
 use webignition\BasilWorker\PersistenceBundle\Services\Store\SourceStore;
 use webignition\StringPrefixRemover\DefinedStringPrefixRemover;
@@ -36,7 +37,7 @@ class SourcePathFinder
 
     public function findNextNonCompiledPath(): ?string
     {
-        $sourcePaths = $this->sourceStore->findAllPaths();
+        $sourcePaths = $this->sourceStore->findAllPaths(Source::TYPE_TEST);
         $testPaths = $this->testRepository->findAllSources();
         $testPaths = $this->removeCompilerSourceDirectoryPrefixFromPaths($testPaths);
 
