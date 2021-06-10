@@ -2,4 +2,3 @@
 .phpunit.result.cache
 var/cache
 .php-cs-fixer.cache
-.php-cs-fixer.php
